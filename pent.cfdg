@@ -1,0 +1,11 @@
+startshape pent
+ 
+background {b -1}
+ 
+rule pent {
+    5*{r 72 x .103006 y .074838}
+    {TRIANGLE {s .618034 1.098186}
+    pent {s .381966 y .391857 b .1459}}
+    pent {s .381966 f 180 y .149676 b .1459}
+}
+ 
