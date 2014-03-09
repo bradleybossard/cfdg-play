@@ -1,0 +1,15 @@
+startshape TREE
+
+rule TREE {
+SQUARE{}
+TREE {y 1 size 0.99 rotate 1.5 brightness 0.01}
+}
+
+rule TREE 0.05 {TREE {}}
+
+rule TREE 0.05 {
+SQUARE{}
+TREE { s 0.99 b -0.5 flip 90}
+TREE { s 0.6 b -0.5}
+TREE { s 0.5 b -0.5 flip 90}
+}

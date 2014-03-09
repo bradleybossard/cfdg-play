@@ -1,0 +1,27 @@
+startshape TREE
+
+rule TREE 20 {
+SQUARE { size 0.25 } 
+TREE { y 0.2 size 0.99 rotate 1 }
+}
+
+rule TREE {BRANCH{}}
+
+rule BRANCH 1 {
+}
+
+rule BRANCH 2 {
+TREE { rotate 20 flip 90 }
+TREE { rotate -20 flip 90}
+
+}
+
+rule BRANCH 2 {
+TREE { rotate 30 }
+TREE { rotate -30 }
+}
+
+rule BRANCH {
+TREE { rotate 40 }
+TREE { rotate -40 }
+}

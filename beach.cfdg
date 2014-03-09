@@ -1,0 +1,158 @@
+size { s 60 40 }
+startshape main
+ 
+rule main { 
+    air {y 4 h 210 sat 0.1 b 0.975 z -3000000 }
+    BackGreen { x 10 y -21 r -20 h 55  sat 0.9 b 0.6  z
+300000 }
+    BackGreen { x 20 y -21 r -2  skew 1 10 h 55  sat 0.9 b
+0.6  z 290000 }
+    Sea { r 4 x 25 y -15 r 17.5 s 0.3 skew 1 1 sat -0.4 b 1
+z 100 }
+    CloudsMatrix { x -40 y 20 z -2000000 }
+}
+ 
+rule CloudsMatrix {
+    120*{ x 0.75 } 
+      { 17 *{ y -1 s 0.999 0.997 } Clouds { s 5 1 } }
+}
+ 
+rule Clouds {}
+rule Clouds 0.005 { startclouds {} }
+ 
+rule air {
+    1000 * { y 0.0175 sat 0.001 } SQUARE { s 60 0.1 }
+}
+ 
+rule BackGreen {
+    400*{ y 0.05 x 0.05 s 0.999 0.999 r -0.1 skew -0.05 0 z
+-1 h -0.01 b 0.0001 } 
+      { 100 *{ x 0.1 } StartPlant { r 15 s 0.5 } }
+}
+ 
+rule StartPlant {}
+rule StartPlant 0.5 { Plant {} }
+ 
+rule Plant { Plant { r -0.01 } }
+rule Plant { Plant { h .05 } }
+rule Plant 0.1 { Plant { s 0.99 } }
+rule Plant 0.01 { DrawPlant { } }
+ 
+rule DrawPlant {
+    CIRCLE { s 0.2 1 }
+    DrawPlant { s 0.992 y 0.3 r 2 h 0.5 b 0.05 sat -0.035 }
+}
+ 
+rule DrawPlant {  DrawPlant { flip 90 } }
+rule DrawPlant {  DrawPlant { s 0.93 } }
+rule DrawPlant 0.9 {  DrawPlant { sat 0.3 b -0.04 } }
+rule DrawPlant 0.15 {  DrawPlant { sat -0.99 b 1 } }
+ 
+rule Sea {
+    598*{ r 0.3 s 0.998  y 0.27 x .2  skew -0.2 -0.36 sat
+0.00 z 1 b -0.0002 } Coast { s 0.99 }
+}
+ 
+rule Coast {
+    980*{ x -0.7 s 0.9985 1.001 sat 0.03 h 0.05 b -0.0009 }
+Wave {s 1.2 h 210 sat -0.2 z 10000}
+    DrawBeach { x 8 r 5 sat 0.6 b -0.2 }
+    DrawBeach2 { r 10 b 0.5 z 10000 a -0.8 }
+    AlgaeStart { x -10  y - 5 skew 1 -4 r -2  h 100 b 0.8 
+sat 0.8 z 50000 }
+}
+ 
+rule DrawBeach { 
+    1500*{ x 0.1 sat 0.001 b -0.001 h 0.01 } BeachEntry { }
+}
+ 
+rule BeachEntry { }
+rule BeachEntry 0.5 { 
+    DrawPlant { s 0.5 1 r -73 h 60 sat -0.2 b 0.5 z 1000 } 
+}
+ 
+rule BeachEntry 0.2 {
+    Beach { x 0.5  y -1 s 0.5 h 60 sat 0.15 b -0.05 a -0.8
+}
+}
+ 
+rule DrawBeach 0.008 { Road { h 60 sat -0.5 b 0.9 z 10000000
+} }
+ 
+rule Road { SQUARE { } Road { x 0.9 s 0.99 r -1.5 } }
+rule Road 0.1 { Road { flip -200 } }
+rule Road 0.012 { Road { r 5 } Road { r -25 } }
+ 
+rule DrawBeach2 { 
+    140*{ x 0.1 sat 0.001 h 0.01 a -0.01 } 
+        Beach { x 0.5  y -1 s 0.5 h 60 sat 0.15 }
+}
+ 
+rule Beach 0.5 {}
+rule Beach    { CIRCLE { s 5 sat 0.3 b +0.1 a -0.99 } }
+rule Beach 0.1  { CIRCLE { s 6 h -5.2 sat 0.8 b -0.3 a -0.99
+} }
+rule Beach 0.1  { CIRCLE { s 3.3 h -1.1 b +0.1 } }
+rule Beach 0.1  { CIRCLE { s 3.3 h -5 b -0.1 } }
+rule Beach 0.1  { CIRCLE { s 3.3 h -2.5 b +0.1 } }
+ 
+rule AlgaeStart     { AlgaeStart { s 0.999  x -10 y -1 } }
+rule AlgaeStart 0.1   { }
+rule AlgaeStart 0.01  { Algae { s 1 sat -0.5 a -0.99 } }
+rule AlgaeStart 0.02  { Algae { s 0.2 0.1 sat -0.5 a -0.99 }
+}
+rule AlgaeStart 0.01  { Algae { s 1 0.4 sat -0.5 a -0.99 h
+50 } }
+rule AlgaeStart 0.01  { Algae { s 0.67 sat -0.5 a -0.99 } }
+ 
+rule Algae { 10* { s 0.92 y 0.1} CIRCLE { s 20 10 skew 2 1 a
+-0.1 }  }
+ 
+rule Wave     { CIRCLE { s 2 z -2 } }
+rule Wave 0.1   { CIRCLE { s 3.3 h -1  } }
+rule Wave 0.1   { CIRCLE { s 3.3 h -2  } }
+rule Wave 0.1   { CIRCLE { s 3.3 h -3  } }
+rule Wave 0.1   { CIRCLE { s 3.3 h -4  } }  
+ 
+// definitelly we need rnd() here...
+// why I should repeat the same many times?
+ 
+rule Wave 0.5   { Flare { s 0.5 r -3  a -0.98 b 1 x 5 z
+100000 } }
+ 
+rule Flare 0.1  { }
+rule Flare      { CIRCLE { s 0.5 sat -10  z +10 } Flare { y
+-0.1 r 13 } }
+rule Flare 0.5  { Flare { flip 90 } }
+rule Flare 0.02   { Flare { y -0.05 r -30 } Flare { y -0.05 r
+300 } }
+ 
+////////////////////////////////////////////////////////////
+// Here clouds by erthad
+//(http://www.contextfreeart.org/gallery/view.php?by=erthad)
+ 
+rule startclouds { 10* { x 1 } startcloud { a -1 } }
+rule startcloud { side { y -0.5 }}
+rule startcloud { side { y 0.5 } }
+ 
+rule cloud {
+    step { }
+    horiz { s 0.7 }
+    side { }
+}
+ 
+rule side { step {} cloud { x -1 a 0.002 }}
+rule side { step {} cloud { x 1 a 0.002 }}
+ 
+rule horiz { step {} rotatecloud { y -1 }}
+rule horiz { step {} rotatecloud { y 1 }}
+ 
+rule rotatecloud { cloud { r 15 }}
+rule rotatecloud { cloud { r -15 }}
+ 
+rule step { SQUARE { b 1 } }
+rule step { CIRCLE { b 1 } }
+ 
+rule side 1.5 {}
+rule step 0.013 {}
+rule cloud 0.013 {}

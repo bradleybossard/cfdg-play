@@ -1,0 +1,11 @@
+startshape COILS
+
+rule COILS {
+5* {r 75} COIL_CIRCLE {}
+#COIL_CIRCLE {}
+}
+
+rule COIL_CIRCLE {
+COIL_CIRCLE { s .99 r 20 b 0.01 y -0.9 x 0.5 } 
+CIRCLE{}
+}

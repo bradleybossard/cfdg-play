@@ -1,0 +1,15 @@
+startshape FEATHER
+
+rule FEATHER {
+SQUARE{}
+FEATHER {y 1.1 size 0.99 rotate 1.5 brightness 0.01}
+}
+
+rule FEATHER 0.05 {FEATHER {}}
+
+rule FEATHER 0.05 {
+SQUARE{}
+FEATHER { s 0.99 b -0.5 }
+FEATHER { s 0.6 b -0.5}
+FEATHER { s 0.5 b -0.5 }
+}
