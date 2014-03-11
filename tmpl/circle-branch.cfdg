@@ -9,15 +9,18 @@ rule TREE {
   BRANCH { flip 90 }
 }
 
-rule BRANCH 98 {
+//rule BRANCH 98 {
+rule BRANCH {
   CIRCLE { }
   CIRCLE { size 0.9 brightness 1 }
   BRANCH { y 0.2 size 0.99 rotate 3 }
 }
 
+/*
 rule BRANCH 2 {
   CIRCLE { }
   CIRCLE { size 0.9 brightness 1 }
   BRANCH { y 0.2 size 0.99 flip 90 }
   BRANCH { y 0.2 size 0.6 brightness 0.2 }
 }
+*/
